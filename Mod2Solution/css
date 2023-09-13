@@ -1,3 +1,10 @@
 div {
-  background-color: DarkGrey
+  box-sizing: border-box;
+  border: 1px solid black;
+  font-family: helvetica;
+  background-color: DarkGrey;
+  width: 20%
+  height: 150px
+  margin-right: auto;
+  margin-left: auto;
 }
