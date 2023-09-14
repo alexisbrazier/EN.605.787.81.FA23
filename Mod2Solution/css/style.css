@@ -13,7 +13,13 @@ div {
   border: 1px solid black;
   background-color: DarkGrey;
   margin: 1%;
-  padding: 4% 1% 0 1%;
+  padding: 2% 1% 0 1%;
+  height: 90px;
+  overflow: hidden;
+  cursor: row-resize; /*cursor is vertical resize when on a box*/
+}
+div:hover { /*show overflow vertical scroll only on hover*/
+  overflow-y: scroll;
 }
 
 h2 {
@@ -40,13 +46,21 @@ h2 {
   background-color: goldenrod;
 }
 
-@media (min-width:992px) {
+@media screen and (min-width:992px) { /*Large Screens*/
   div {
     width: 30%;
   }
+  h1{
+    color: green;
+  }
 }
-@media (min-width:768px) and (max-width:991px) {
-
+@media screen and (min-width:768px) and (max-width:991px) { /*Medium Screens*/
+  div{
+    padding: 3% 1% 0 1%;
+  }
+  h1{
+    color:red;
+  }
   #Box1 {
     width: 48%;
   }
@@ -56,8 +70,23 @@ h2 {
   #Box3 {
     width:98%
   }
-@media (max-width: 767px){
-
+}
+@media screen and (max-width: 767px) {  /*Small Screens*/
+  div {
+    padding: 10% 1% 0 1%;
+  }
+  h1 {
+    visibility: hidden;
+  }
+  h1:after{
+    display: block;
+    visibility: visible;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.2em;
+    text-align: left;
+    content: "Categories";
+    padding-left: 1%;
+  }
   #Box1{
     width: 100%
   }
@@ -67,5 +96,16 @@ h2 {
   #Box3{
     width: 100%
   }
-}
+  h2 { /*Make the title the full size of the box*/
+    width:100%;
+  }
+ #Box1>h2:after{ /*describe the chicken*/
+  content: ": Don't even think about counting them before they've hatched"
+ }
+ #Box2>h2:after{  /*describe the beef*/
+  content: ": American slang meaning to hold a grudge or start one"
+ }
+ #Box3>h2:after{  /*describe the sushi*/
+  content: ": Did you know that most wasabi in the US is actually dyed horseradish? "
+ }
 }
