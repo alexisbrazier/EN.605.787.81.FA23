@@ -1,1 +1,33 @@
+body {
+    font-size: 16px;
+    color: black;
+    background-color: white;
+    font-family: 'Oxygen', sans-serif;
+}
+
+#header-nav {
+    background-color: grey;
+    box-sizing: border-box;
+    border-width: 10px;
+    border-bottom-color: black;
+
+}
+h1 {
+    margin:30px;
+}
+h3{
+    background-color: grey;
+    margin:0;
+}
+p{
+    margin:0;
+    background-color: grey;
+}
+p{
+    height: 1000px;
+}
+#dropdownMenuButton {
+    width: 100%;
+    background-color:blue;
+}
 
