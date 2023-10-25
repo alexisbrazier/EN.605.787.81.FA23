@@ -7,13 +7,20 @@ angular.module("ShoppingListCheckOff", [])
     ToBuy.items = ShoppingListCheckOffService.getItems();
     ToBuy.buy = function(index) {
         ShoppingListCheckOffService.buyItem(index);
+        ShoppingListCheckOffService.updatePrice(index);
+        console.log($scope.itemPrice)
+    }
+    ToBuy.getPrice = function(index){
+        return shoppingList[index].pricePerItem
     }
 })
     
 .controller('AlreadyBoughtController', function($scope,ShoppingListCheckOffService) {
     var AlreadyBought = this;
     AlreadyBought.items = ShoppingListCheckOffService.getAlreadyBoughtItems();
-}).service('ShoppingListCheckOffService', function() {
+})
+
+.service('ShoppingListCheckOffService', function() {
     var service = this;
         const shoppingList = [
             {name: "cookies", quantity: 10, pricePerItem: 0.5},
@@ -36,5 +43,11 @@ angular.module("ShoppingListCheckOff", [])
         service.getItems = function() {
             return shoppingList;
         }
-});
+
+        service.updatePrice = function(index) {
+            shoppingList[index].pricePerItem = this.newPrice;
+        }
+})
+
+.filter('');
 })();
