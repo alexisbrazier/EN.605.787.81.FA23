@@ -20,7 +20,6 @@
                 } else {
                     narrow.nothingFound = false;
                 }
-                console.log(matcheditems[0].length)
             });
 
             
@@ -41,7 +40,6 @@
     MenuSearchService.$inject['$http', 'Api'];
     function MenuSearchService($http, Api) {
         var service = this;
-        console.log($http)
 
         service.getMatchedMenuItems = function (searchTerm) {
             return $http({
