@@ -9,7 +9,7 @@
     NarrowItDownController.$inject = ['MenuSearchService'];
     function NarrowItDownController(MenuSearchService) {
         var narrow = this;
-        narrow.nothingFound = false;
+        narrow.nothingFound = null;
 
 
         narrow.getItems = function (searchValue) {
@@ -18,7 +18,7 @@
                 if(matcheditems[0].length === 0){
                     narrow.nothingFound = 'Nothing found';
                 } else {
-                    narrow.nothingFound = false;
+                    narrow.nothingFound = null;
                 }
             });
 
