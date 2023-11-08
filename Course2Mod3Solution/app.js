@@ -1,99 +1,65 @@
 (function () {
     'use strict';
-    
-angular.module("NarrowItDownApp", [])
-.controller("NarrowItDownController", NarrowItDownController)
-.service("MenuSearchService", MenuSearchService)
-.constant("ApiBasePath", "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items.json")
-.directive('foundItems', FoundItemsDirective);
 
-function FoundItemsDirective() {
-    var ddo = {
-        controller: FoundItemsDirectiveController,
-        scope: {
-            found:"<",
-            onRemove: '&',
-            title: '@title'
-        },
-        templateUrl: "foundItems.html",
-        bindToController: true,
-        controllerAs: 'list'
+    angular.module("NarrowItDownApp", [])
+        .controller("NarrowItDownController", NarrowItDownController)
+        .service("MenuSearchService", MenuSearchService)
+        .constant("ApiBasePath", "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items.json");
+
+    NarrowItDownController.$inject = ['MenuSearchService'];
+    function NarrowItDownController(MenuSearchService) {
+        var narrow = this;
+
+
+
+        narrow.getItems = function (searchValue) {
+            console.log('hello')
+            var promise = MenuSearchService.getMatchedMenuItems(searchValue).then(function(matcheditems) {
+                narrow.found = matcheditems[0]
+            });
+            console.log(promise)
+
+
+        }
+
+        narrow.remove = function(item) {
+            console.log(item)
+            console.log(narrow.found)
+        }
         
-    
-    };
-    return ddo;
 
-}
+    }
 
-function FoundItemsDirectiveController() {
-    var found = this;
-}
+    MenuSearchService.$inject['$http', 'ApiBasePath'];
+    function MenuSearchService($http, ApiBasePath) {
+        var service = this;
+        // console.log(ApiBasePath)
+        console.log($http)
 
-NarrowItDownController.$inject = ['MenuSearchService'];
-function NarrowItDownController(MenuSearchService) {
-    var narrow = this;
-    narrow.found = [];
+        service.getMatchedMenuItems = function (searchTerm) {
+            return $http({
+                method: "GET",
+                url: (ApiBasePath)
+            }).then(function (result) {
+                // process result and only keep items that match
+                var found_all = []
 
-    narrow.finditems = function(item) {
-        var promise = MenuSearchService.getMatchedMenuItems(item)
-        promise.then(function(matchedItems){
-            narrow.found = matchedItems;
-            if(narrow.found.length > 0) {
-                narrow.hasBeenSearched = true
-            }
-            else {
-                narrow.hasBeenSearched = false
-            }
+                for (const property in result.data) {
+                    for (var i in result.data[property].menu_items) {
 
-        }).catch(function (error){
-            console.log("There was an error.")
-        });
+                        var namedish = result.data[property].menu_items[i].name
+                        var shortnamedish = result.data[property].menu_items[i].short_name
+                        var description = result.data[property].menu_items[i].description
+
+                        if (description.includes(searchTerm)) {
+                            found_all.push({name: namedish, shortname: shortnamedish, description: description})
+                        }
+                    }
+                }
+                return [found_all];
+            })
         }
     }
 
-
-    narrow.remove = function(index){
-        MenuSearchService.removeItem(index);
-    }
-
-
-
-MenuSearchService.$inject['$http', 'ApiBasePath'];
-function MenuSearchService($http, ApiBasePath) {
-    var service = this;
-    var foundItems = [];
-    
-    service.getMatchedMenuItems = function(searchTerm) {
-        return $http({
-            method: "GET",
-            url: (ApiBasePath)
-        }).then(function (result) {
-            // process result and only keep items that match
-            var foundItems = []
-            if(!searchTerm) {
-                return foundItems;
-            }
-
-            for (var i = 0; i < result.length; i++) {
-                var description = result[i].description.toLowerCase();
-                searchTerm = searchTerm.toLowerCase();
-                if (description.indexOf(searchTerm) !== -1) {
-                  return foundItems.push(result[i]);
-                }
-              }
-      
-            // return processed items
-            return foundItems;
-        })
-    }
-
-    service.removeItem = function(index) {
-        foundItems.splice(index,1);
-    }
-
-    service.getItems = function () {
-        return foundItems;
-      };
-}
-
+    // .filter('');
 })();
