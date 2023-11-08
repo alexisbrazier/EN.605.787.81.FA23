@@ -4,42 +4,49 @@
     angular.module("NarrowItDownApp", [])
         .controller("NarrowItDownController", NarrowItDownController)
         .service("MenuSearchService", MenuSearchService)
-        .constant("ApiBasePath", "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items.json");
+        .constant("Api", "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items.json");
 
     NarrowItDownController.$inject = ['MenuSearchService'];
     function NarrowItDownController(MenuSearchService) {
         var narrow = this;
-
+        narrow.nothingFound = false;
 
 
         narrow.getItems = function (searchValue) {
-            console.log('hello')
             var promise = MenuSearchService.getMatchedMenuItems(searchValue).then(function(matcheditems) {
                 narrow.found = matcheditems[0]
+                if(matcheditems[0].length === 0){
+                    narrow.nothingFound = 'Nothing found';
+                } else {
+                    narrow.nothingFound = false;
+                }
+                console.log(matcheditems[0].length)
             });
-            console.log(promise)
+
+            
 
 
         }
 
         narrow.remove = function(item) {
-            console.log(item)
-            console.log(narrow.found)
+           var array = narrow.found;
+           var index = array.indexOf(item);
+           array.splice(index,1);
+
         }
         
 
     }
 
-    MenuSearchService.$inject['$http', 'ApiBasePath'];
-    function MenuSearchService($http, ApiBasePath) {
+    MenuSearchService.$inject['$http', 'Api'];
+    function MenuSearchService($http, Api) {
         var service = this;
-        // console.log(ApiBasePath)
         console.log($http)
 
         service.getMatchedMenuItems = function (searchTerm) {
             return $http({
                 method: "GET",
-                url: (ApiBasePath)
+                url: (Api)
             }).then(function (result) {
                 // process result and only keep items that match
                 var found_all = []
