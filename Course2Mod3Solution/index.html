@@ -23,17 +23,17 @@
       <input type="text" ng-model="searchValue" placeholder="search term" class="form-control">
     </div>
     <div class="form-group narrow-button">
-      <button class="btn btn-info item" ng-click="narrow.getItems(searchValue);">Narrow It Down For Me</button>
+      <button class="btn btn-info item" ng-click="narrow.getItems(searchValue);">Narrow It Down For Me!</button>
     </div>
 
     <div>
-        <div ng-if="narrow.nothingFound">Nothing Found</div>
+        <div>{{narrow.nothingFound}}</div>
       <table>
         <tr ng-repeat="item in narrow.found">
           <td>{{item.name}}</td>
           <td>{{item.shortname}}</td>
           <td>{{item.description}}</td>
-          <td><button ng-click="narrow.remove(index)">Remove this Item</button></td>
+          <td><button ng-click="narrow.remove(item)">Don't Want This One!</button></td>
         </tr>
       </table>
 
