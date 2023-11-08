@@ -1,0 +1,9 @@
+<table>
+    <tr ng-repeat="item in narrow.found">
+        <td>item.short_name</td>
+        <td>{{item.name}}</td>
+        <td>{{item.description}}</td>
+        <td><button ng-click="narrow.removeItem($index)">Remove Item</button></td>
+    </tr>
+</table>>
+ 
