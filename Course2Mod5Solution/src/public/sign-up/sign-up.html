@@ -1,0 +1,16 @@
+<div class="container">
+<script type="text/ng-template" id="sign-up.html">
+    <h2>Sign Up Form</h2>
+    <form ng-submit="submitForm()">
+      <label for="name">Name:</label>
+      <input type="text" id="name" ng-model="user.name" required><br><br>
+      <label for="email">Email:</label>
+      <input type="email" id="email" ng-model="user.email" required><br><br>
+      <label for="phone">Phone Number:</label>
+      <input type="phone" id="phone" ng-model="user.phone" required><br><br>
+      <label for="favorite" >Favorite Menu Item:</label>
+      <input type="favorite" id = "favorite" ng-model="user.favorite" required><br><br>
+      <input type="submit" value="Submit">
+    </form>
+  </script>
+</div>
