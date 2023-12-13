@@ -1,9 +1,10 @@
-<div class="container">
-<script type="text/ng-template" id="sign-up.html">
+<div class="container" id="sign-up.html">
     <h2>Sign Up Form</h2>
     <form ng-submit="submitForm()">
-      <label for="name">Name:</label>
-      <input type="text" id="name" ng-model="user.name" required><br><br>
+      <label for="fname">First Name:</label>
+      <input type="text" id="fname" ng-model="user.fname" required><br><br>
+      <label for="lname">Last Name:</label>
+      <input type="text" id="lname" ng-model="user.lname" required><br><br>
       <label for="email">Email:</label>
       <input type="email" id="email" ng-model="user.email" required><br><br>
       <label for="phone">Phone Number:</label>
@@ -12,5 +13,5 @@
       <input type="favorite" id = "favorite" ng-model="user.favorite" required><br><br>
       <input type="submit" value="Submit">
     </form>
-  </script>
-</div>
+
+</div>  
