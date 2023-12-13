@@ -1,1 +1,12 @@
+<h2>Confirmation</h2>
+<div ng-if="userData">
+  <p>Thank you for signing up!</p>
+  <p>Name: {{ user.fname }} {{user.lname}}</p>
+  <p>Email: {{ user.email }}</p>
+  <p>Phone: {{user.phone}}</p>
+  <p>Favorite: {{user.favorite}}</p>
+</div>
+<div ng-if="!userData">
+  <p>Need to sign up first.</p>
+</div>
 
