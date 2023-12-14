@@ -2,25 +2,54 @@
     "use strict";
     
     angular.module('public')
-    .controller('SignUpController', SignUpController);
+    .controller('SignUpController', SignUpController)
+    .service('SignUpService', SignUpService);
     
     SignUpController.$inject = ['$scope'];
     function SignUpController($scope) {
-      $scope.user = {};
-    
-    
-      $scope.submitForm = function(){
+      $scope.userList = [];
+      var formSubmitted = "";        
+
+      submitForm = function(){
+      
+
+
         var signUpData = {
-          fname: $scope.user.fname,
-          lname: $scope.user.lname,
-          email: $scope.user.email,
-          phone: $scope.user.phone,
-          favorite: $scope.user.favorite
+          fname: $scope.newuser.fname,
+          lname: $scope.newuser.lname,
+          email: $scope.newuser.email,
+          phone: $scope.newuser.phone,
+          favorite: $scope.newuser.favorite
         };
+
+        $scope.userList.push(signUpData);
+        
+        formSubmitted = "Your information has been saved";
+
         console.log('Sign Up Data:', signUpData);
+        console.log('User List', $scope.userList)
+        console.log('formsubmitted function:', formSubmitted)
+      }
+
+    }
+
+    SignUpService.$inject = ['$q', 'categoryShortname']
+    function SignUpService($q, favorite){
+      var service = this;
+      var baseApi = "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/";
+
+      service.getCategory = function(favorite) {
+        var MenuApi = baseApi.concat(favorite,".json")
+        return $http({
+          method: "GET",
+          url: (MenuApi)
+        }).then(function(result){
+          return result;
+        })
+      console.log(result);
       }
     }
     
-    
     })();
+
 
