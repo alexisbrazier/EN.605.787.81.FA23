@@ -11,7 +11,7 @@
     <input type="phone" id="phone" ng-model="newuser.phone" style="color:black" required><br><br>
     <label for="favorite">Favorite Menu Item ID:</label>
     <input type="favorite" id = "favorite" ng-model="newuser.favorite" ng-blur="showError" style="color:black" required><br>
-    <p ng-show="showError">{{errorMessage}}</p><br>
+    <p>{{errorMessage}}</p><br>
     <input type="submit" style="color:black" id=submit value="Submit" ng-click="displaySave()">
     <p>
       {{formSubmitted}}
