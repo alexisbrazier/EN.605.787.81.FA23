@@ -8,11 +8,11 @@
         function MyInfoController($scope) {
             var userNo = $scope.userList.length;
             if(userNo>0) {
-                var UserDisplay = true;
+                $scope.UserDisplay = true;
                 console.log(UserDisplay);
             }
             else {
-                var UserDisplay = false;
+                $scope.UserDisplay = false;
                 console.log(UserDisplay);
             }
             var user = $scope.userList[userNo];
