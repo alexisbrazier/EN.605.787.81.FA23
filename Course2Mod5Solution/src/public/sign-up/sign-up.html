@@ -1,6 +1,6 @@
 <div class="container" id="sign-up.html">
     <h2>Sign Up Form</h2>
-    <form ng-submit="submitForm()">
+    <form ng-submit="submitForm()" ng-controller="SignUpController">
       <label for="fname">First Name:</label>
       <input type="text" id="fname" ng-model="newuser.fname" style="color:black" required><br><br>
       <label for="lname">Last Name:</label>
@@ -11,10 +11,9 @@
       <input type="phone" id="phone" ng-model="newuser.phone" style="color:black" required><br><br>
       <label for="favorite" >Favorite Menu Item ID:</label>
       <input type="favorite" id = "favorite" ng-model="newuser.favorite" style="color:black" required><br><br>
-      <input type="submit" style="color:black" value="Submit" ng-click="displaySave()">
+      <input type="submit" style="color:black" id=submit value="Submit" ng-click="displaySave()">
+      <p>
+        {{formSubmitted}}
+     </p>
     </form>
-    <p>{{SignUp.formSubmitted}}</p>
-    <div>
-      <p></p>
-    </div>
 </div>  
