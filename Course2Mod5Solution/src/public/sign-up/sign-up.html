@@ -1,19 +1,20 @@
 <div class="container" id="sign-up.html">
-    <h2>Sign Up Form</h2>
-    <form ng-submit="submitForm()" ng-controller="SignUpController">
-      <label for="fname">First Name:</label>
-      <input type="text" id="fname" ng-model="newuser.fname" style="color:black" required><br><br>
-      <label for="lname">Last Name:</label>
-      <input type="text" id="lname" ng-model="newuser.lname" style="color:black" required><br><br>
-      <label for="email">Email:</label>
-      <input type="email" id="email" ng-model="newuser.email" style="color:black" required><br><br>
-      <label for="phone">Phone Number:</label>
-      <input type="phone" id="phone" ng-model="newuser.phone" style="color:black" required><br><br>
-      <label for="favorite" >Favorite Menu Item ID:</label>
-      <input type="favorite" id = "favorite" ng-model="newuser.favorite" style="color:black" required><br><br>
-      <input type="submit" style="color:black" id=submit value="Submit" ng-click="displaySave()">
-      <p>
-        {{formSubmitted}}
-     </p>
-    </form>
+  <h2>Sign Up Form</h2>
+  <form ng-submit="submitForm()" ng-controller="SignUpController">
+    <label for="fname">First Name:</label>
+    <input type="text" id="fname" ng-model="newuser.fname" style="color:black" required><br><br>
+    <label for="lname">Last Name:</label>
+    <input type="text" id="lname" ng-model="newuser.lname" style="color:black" required><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" ng-model="newuser.email" style="color:black" required><br><br>
+    <label for="phone">Phone Number:</label>
+    <input type="phone" id="phone" ng-model="newuser.phone" style="color:black" required><br><br>
+    <label for="favorite">Favorite Menu Item ID:</label>
+    <input type="favorite" id = "favorite" ng-model="newuser.favorite" ng-blur="showError" style="color:black" required><br>
+    <p ng-show="showError">{{errorMessage}}</p><br>
+    <input type="submit" style="color:black" id=submit value="Submit" ng-click="displaySave()">
+    <p>
+      {{formSubmitted}}
+   </p>
+  </form>
 </div>  
