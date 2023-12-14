@@ -8,9 +8,9 @@
     SignUpController.$inject = ['$scope'];
     function SignUpController($scope) {
       $scope.userList = [];
-      var formSubmitted = "";        
+      $scope.formSubmitted = "";  
 
-      submitForm = function(){
+      $scope.submitForm = function(){
       
 
 
@@ -22,13 +22,14 @@
           favorite: $scope.newuser.favorite
         };
 
+
         $scope.userList.push(signUpData);
         
-        formSubmitted = "Your information has been saved";
+        $scope.formSubmitted = "Your information has been saved";
 
         console.log('Sign Up Data:', signUpData);
         console.log('User List', $scope.userList)
-        console.log('formsubmitted function:', formSubmitted)
+        // console.log('formsubmitted function:', formSubmitted)
       }
 
     }
@@ -51,5 +52,3 @@
     }
     
     })();
-
-
